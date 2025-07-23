@@ -12,6 +12,7 @@ import Settings from './pages/Settings';
 import Discover from './pages/Discover';
 import SignIn from './pages/SignIn';
 import WriteLog from './pages/WriteLog';
+import BatchWriteLog from './pages/BatchWriteLog';
 
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
                 <Route index element={<Navigate to="home" replace />} />
                 <Route path="home" element={<Discover />} />
                 <Route path="writeLog" element={<WriteLog />} />
+                <Route path="batchWriteLog" element={<BatchWriteLog />} />
 
                 <Route path="settings" element={<Settings />} />
                 {/* Catch-all for unmatched routes */}

@@ -13,10 +13,12 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import { Link } from 'react-router-dom';
+import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 
 const mainListItems = [
     { text: 'Discover', icon: <HomeRoundedIcon />, link: '/home' },
-    { text: 'Write Log', icon: <AssignmentRoundedIcon />, link: '/writeLog' }
+    { text: 'Write Log', icon: <AssignmentRoundedIcon />, link: '/writeLog' },
+    { text: 'Batch Write Log', icon: <FileUploadRoundedIcon />, link: '/batchWriteLog' }
     // { text: 'Analytics', icon: <AnalyticsRoundedIcon /> },
     // { text: 'Clients', icon: <PeopleRoundedIcon /> },
     // { text: 'Tasks', icon: <AssignmentRoundedIcon /> },

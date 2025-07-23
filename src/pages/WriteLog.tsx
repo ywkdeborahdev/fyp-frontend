@@ -22,7 +22,9 @@ const serverOptions = [
 ]
 
 // const contractAddress = `${import.meta.env.CONTRACT_ADDRESS}`;
-const contractAddress = "0x7B92a5662891FA2A9746Ef79646D177e49b13043";
+// console.log(`console.log ${contractAddress}`);
+// const contractAddress = "0x7B92a5662891FA2A9746Ef79646D177e49b13043";
+const contractAddress = "0x86F97bdcCA54631B3696F75415330eb6b54FEDE7";
 
 // Placeholder for EIP-6963 types
 interface EIP6963ProviderInfo {

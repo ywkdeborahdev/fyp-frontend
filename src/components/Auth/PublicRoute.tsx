@@ -6,38 +6,48 @@ const PublicRoute: React.FC = () => {
     const { isAuthenticated, setAuthenticated } = useAuth();
     const [loading, setLoading] = useState(true);
 
+    // This check is for users who are already logged in from a previous session.
+    // We don't want to show them the sign-in page.
     useEffect(() => {
         async function verifyAuth() {
+            // This logic is similar to ProtectedRoute, it checks for an existing session.
             try {
-                console.log('Verifying authentication...');
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/protected`, {
-                    credentials: 'include', // send cookies
+                    credentials: 'include', // This sends the httpOnly cookie
                 });
 
-                if (response.status === 401) {
-                    setAuthenticated(false);
-                    console.log('Unauthorized access,');
-                    return null;
-                };
                 if (response.ok) {
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
                 }
             } catch (error) {
-                console.log('Error verifying authentication:', error);
+                console.error('Error verifying auth on public route:', error);
                 setAuthenticated(false);
             } finally {
                 setLoading(false);
             }
         }
 
-        verifyAuth();
-    }, [setAuthenticated]);
+        // We only run this check if the auth status isn't already known.
+        if (!isAuthenticated) {
+            verifyAuth();
+        } else {
+            setLoading(false);
+        }
+    }, [isAuthenticated, setAuthenticated]);
 
-    if (loading) return <Navigate to="/signin" replace />;
-    if (isAuthenticated) return <Navigate to="/home" replace />;
 
+    if (loading) {
+        return <div>Loading...</div>; // Or a spinner
+    }
+
+    if (isAuthenticated) {
+        // If logged in, don't show the sign-in page, redirect to the dashboard.
+        return <Navigate to="/home" replace />;
+    }
+
+    // If not logged in, show the public route (e.g., SignIn).
     return <Outlet />;
 };
 

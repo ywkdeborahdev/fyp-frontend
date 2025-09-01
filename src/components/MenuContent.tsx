@@ -6,37 +6,36 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
+import { useAuth } from './Auth/AuthContext';
 
 const mainListItems = [
     { text: 'Discover', icon: <HomeRoundedIcon />, link: '/home' },
     { text: 'Write Log', icon: <AssignmentRoundedIcon />, link: '/writeLog' },
     { text: 'Batch Write Log', icon: <FileUploadRoundedIcon />, link: '/batchWriteLog' }
-    // { text: 'Analytics', icon: <AnalyticsRoundedIcon /> },
-    // { text: 'Clients', icon: <PeopleRoundedIcon /> },
-    // { text: 'Tasks', icon: <AssignmentRoundedIcon /> },
 ];
 
 const secondaryListItems = [
     { text: 'Settings', icon: <SettingsRoundedIcon />, link: '/settings' },
-    // { text: 'About', icon: <InfoRoundedIcon /> },
-    // { text: 'Feedback', icon: <HelpRoundedIcon /> },
 ];
 
 export default function MenuContent() {
+    const location = useLocation();
+    const { userGroup } = useAuth(); // Get userGroup from context
+
     return (
         <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
             <List dense>
-                {mainListItems.map((item, index) => (
-                    <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton selected={index === 0} to={item.link} component={Link}>
+                {mainListItems.map((item) => (
+                    <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+                        <ListItemButton
+                            selected={location.pathname === item.link}
+                            to={item.link}
+                            component={Link}
+                        >
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.text} />
                         </ListItemButton>
@@ -44,9 +43,14 @@ export default function MenuContent() {
                 ))}
             </List>
             <List dense>
-                {secondaryListItems.map((item, index) => (
-                    <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton to={item.link} component={Link}>
+                {/* Only show settings if userGroup is not 2 */}
+                {userGroup !== 2 && secondaryListItems.map((item) => (
+                    <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+                        <ListItemButton
+                            selected={location.pathname === item.link}
+                            to={item.link}
+                            component={Link}
+                        >
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.text} />
                         </ListItemButton>

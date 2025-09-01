@@ -6,10 +6,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-// import SelectContent from './SelectContent.tsx';
 import MenuContent from './MenuContent.tsx';
-// import CardAlert from './CardAlert.tsx';
 import OptionsMenu from './OptionsMenu.tsx';
+import { useAuth } from './Auth/AuthContext';
 
 const drawerWidth = 240;
 
@@ -25,6 +24,8 @@ const Drawer = styled(MuiDrawer)({
 });
 
 export default function SideMenu() {
+    const { username, useremail } = useAuth();
+
     return (
         <Drawer
             variant="permanent"
@@ -42,7 +43,6 @@ export default function SideMenu() {
                     p: 1.5,
                 }}
             >
-                {/* <SelectContent /> */}
                 <Typography variant="h6" sx={{ fontWeight: 600 }}>
                     Log Finder
                 </Typography>
@@ -57,7 +57,6 @@ export default function SideMenu() {
                 }}
             >
                 <MenuContent />
-                {/* <CardAlert /> */}
             </Box>
             <Stack
                 direction="row"
@@ -71,16 +70,16 @@ export default function SideMenu() {
             >
                 <Avatar
                     sizes="small"
-                    alt="Deborah"
+                    alt={username || 'User'}
                     src="/static/images/avatar/7.jpg"
                     sx={{ width: 36, height: 36 }}
                 />
                 <Box sx={{ mr: 'auto' }}>
                     <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
-                        Deborah
+                        {username || 'User'}
                     </Typography>
                     <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                        Deborah@abc.com
+                        {useremail || 'email@example.com'}
                     </Typography>
                 </Box>
                 <OptionsMenu />

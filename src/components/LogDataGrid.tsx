@@ -29,7 +29,7 @@ interface LogEntry {
 
 const server = [
     { id: 1, name: 'logUbuntuDemo1' },
-    { id: 2, name: 'postmanDemo' },
+    { id: 2, name: 'Server 2' },
     { id: 3, name: 'Server 3' },
 ]
 
@@ -235,11 +235,16 @@ export default function LogDataGrid() {
                     pagination: { paginationModel: { pageSize: 10, page: 0 } },
                 }}
                 disableRowSelectionOnClick
-                autoHeight
                 loading={loading}
+                sx={{
+                    // This is the new way to make the grid height fit its content
+                    '&.MuiDataGrid-root': {
+                        height: 'auto',
+                    },
+                }}
                 slotProps={{
                     toolbar: {
-                        csvOptions: { fileName: "helloMoto" },
+                        csvOptions: { fileName: "log-export" },
                     },
                     loadingOverlay: {
                         variant: 'circular-progress',

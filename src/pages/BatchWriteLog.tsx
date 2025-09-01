@@ -8,7 +8,7 @@ import { formatAddress } from "../utils"
 import { ethers } from 'ethers';
 import LogEmitterABI from '../contracts/abi.json';
 
-const contractAddress = "0x86F97bdcCA54631B3696F75415330eb6b54FEDE7";
+const contractAddress = "0x9393486896D3ae612B4939afAF2C367Df17CC39B";
 
 // Placeholder for EIP-6963 types
 interface EIP6963ProviderInfo {

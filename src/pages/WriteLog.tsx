@@ -17,14 +17,14 @@ import { formatAddress } from "../utils"
 
 const serverOptions = [
     { id: 1, name: 'logUbuntuDemo1' },
-    { id: 2, name: 'postmanDemo' },
+    { id: 2, name: 'Server 2' },
     { id: 3, name: 'Server 3' },
 ]
 
 // const contractAddress = `${import.meta.env.CONTRACT_ADDRESS}`;
 // console.log(`console.log ${contractAddress}`);
 // const contractAddress = "0x7B92a5662891FA2A9746Ef79646D177e49b13043";
-const contractAddress = "0x86F97bdcCA54631B3696F75415330eb6b54FEDE7";
+const contractAddress = "0x54dA4E13992Cf3Ab86a09C39230A27257214f99d";
 
 // Placeholder for EIP-6963 types
 interface EIP6963ProviderInfo {
